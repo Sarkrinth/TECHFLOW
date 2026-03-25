@@ -1,11 +1,457 @@
-<html>
+<!DOCTYPE html>
+<html class="dark" lang="en">
 <head>
-    <title>Review</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TECHFLOW | Reviews — Razer Orochi V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary-fixed-dim":"#00d4ec","background":"#0e0e0e","surface-tint":"#81ecff",
+          "on-primary":"#005762","surface-variant":"#262626","secondary-fixed-dim":"#2be800",
+          "on-surface":"#ffffff","primary":"#81ecff","error-container":"#9f0519",
+          "surface-container-high":"#201f1f","secondary":"#2ff801","on-surface-variant":"#adaaaa",
+          "on-background":"#ffffff","surface-container":"#1a1919","on-secondary-container":"#e7ffd9",
+          "on-secondary":"#0b5800","outline-variant":"#494847","primary-fixed":"#00e3fd",
+          "primary-dim":"#00d4ec","secondary-container":"#106e00","primary-container":"#00e3fd",
+          "outline":"#777575","on-primary-fixed":"#003840","surface":"#0e0e0e",
+          "surface-container-highest":"#262626","surface-bright":"#2c2c2c",
+          "surface-container-lowest":"#000000","surface-dim":"#0e0e0e","surface-container-low":"#131313",
+          "secondary-dim":"#2be800"
+        },
+        fontFamily: { "headline":["Space Grotesk"],"body":["Inter"],"label":["Inter"] },
+        borderRadius: {"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+    display:inline-block;line-height:1;text-transform:none;letter-spacing:normal;word-wrap:normal;white-space:nowrap;direction:ltr;
+  }
+  .star-filled { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
+  @keyframes pageFadeIn {
+    from { opacity:0; transform:translateY(14px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes slideIn {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  body { animation:pageFadeIn 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+  .glass-card {
+    background:rgba(38,38,38,0.55);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .review-card-new { animation: slideIn 0.4s ease both; }
+
+  .review-input {
+    width:100%; background:#1a1919 !important; border:1px solid rgba(73,72,71,0.4);
+    border-radius:0.375rem; color:#fff !important; padding:0.75rem 1rem;
+    font-family:'Inter',sans-serif; font-size:0.9rem; outline:none;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-text-fill-color:#fff !important;
+    caret-color:#fff;
+    /* Nuke any browser-injected white background */
+    box-shadow: 0 0 0 1000px #1a1919 inset !important;
+  }
+  .review-input:-webkit-autofill,
+  .review-input:-webkit-autofill:hover,
+  .review-input:-webkit-autofill:focus,
+  .review-input:-webkit-autofill:active {
+    -webkit-box-shadow:0 0 0 1000px #1a1919 inset !important;
+    box-shadow:0 0 0 1000px #1a1919 inset !important;
+    -webkit-text-fill-color:#fff !important;
+    background-color:#1a1919 !important;
+    color:#fff !important;
+    caret-color:#fff !important;
+  }
+  .review-input:focus { border-color:#81ecff; box-shadow:0 0 0 3px rgba(129,236,255,0.1); }
+  .review-input::placeholder { color:#555; }
+  textarea.review-input { resize:none; }
+
+  .star-btn { cursor:pointer; transition:transform 0.1s; color:#494847; font-size:1.6rem; }
+  .star-btn:hover, .star-btn.active { color:#2ff801; transform:scale(1.15); }
+  .avatar-circle {
+    width:2.75rem; height:2.75rem; border-radius:50%;
+    background:#201f1f; border:1px solid rgba(73,72,71,0.3);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700;
+    color:#00d4ec; font-size:0.85rem; flex-shrink:0;
+  }
+  #reviews-container { display:grid; gap:1.25rem; }
+  .review-card { border-radius:0.75rem; padding:1.5rem; transition:background 0.2s; }
+  .review-card:hover { background:rgba(38,38,38,0.8); }
+</style>
 </head>
-<body>
-    <h1>Review</h1>
-    <p>For more information, visit the <a href="/index.html">Home</a> page.</p>
-    <p>Back to the <a href="/Review.html">Review</a> page if you want to go back.</p>
-    <p>Contact us at <a href="/ContactUs.html">Contact Us</a>.</p>
+<body class="bg-surface font-body text-on-surface">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-[#0e0e0e]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,229,255,0.1)]">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <a href="index.html" class="text-2xl font-black tracking-tighter text-white uppercase font-headline">TECHFLOW</a>
+    <div class="hidden md:flex items-center gap-8 font-headline tracking-tighter uppercase text-sm">
+      <a class="text-[#adaaaa] hover:text-white transition-colors duration-300" href="index.html">Home</a>
+      <a class="text-[#00E5FF] border-b-2 border-[#00E5FF] pb-1" href="Review.html">Reviews</a>
+      <a class="text-[#adaaaa] hover:text-white transition-colors duration-300" href="ContactUs.html">Contact</a>
+    </div>
+    <button class="bg-primary text-on-primary-fixed font-headline font-bold px-6 py-2 rounded-lg hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all duration-300 scale-95 active:scale-90 uppercase tracking-tighter text-sm">
+      Subscribe
+    </button>
+  </div>
+</nav>
+
+<main class="pt-32 pb-24 px-6 max-w-7xl mx-auto">
+
+  <!-- Hero -->
+  <section class="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="space-y-6">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse shadow-[0_0_10px_#2ff801]"></span>
+        <span class="font-headline text-secondary text-sm tracking-widest uppercase">Community Reviews</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-headline font-bold tracking-tighter leading-none">
+        Razer <span class="text-primary">Orochi V2</span>
+      </h1>
+      <p class="text-on-surface-variant text-lg max-w-md leading-relaxed">
+        Real opinions from real users. No sponsored fluff — just honest takes from people who actually bought and used this mouse.
+      </p>
+      <div class="flex gap-6 pt-2">
+        <div>
+          <span class="text-3xl font-headline font-bold text-white" id="avg-rating">—</span>
+          <p class="text-xs text-on-surface-variant mt-1">Average rating</p>
+        </div>
+        <div class="w-px bg-outline-variant/30"></div>
+        <div>
+          <span class="text-3xl font-headline font-bold text-white" id="total-reviews">—</span>
+          <p class="text-xs text-on-surface-variant mt-1">Total reviews</p>
+        </div>
+      </div>
+    </div>
+    <div class="relative group">
+      <div class="absolute -inset-4 bg-primary/10 blur-3xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+      <img alt="Razer Orochi V2" class="relative z-10 w-full h-[380px] object-contain drop-shadow-[0_20px_50px_rgba(0,229,255,0.15)]" src="https://assets2.razerzone.com/images/pnx.assets/ca2f7dabb8b54e111b4272884d4663e1/orochi-white.webp"/>
+    </div>
+  </section>
+
+  <!-- Reviews section -->
+  <section class="mb-16">
+    <div class="flex items-center gap-4 mb-10">
+      <h2 class="font-headline text-3xl font-bold tracking-tight">What people are saying</h2>
+      <div class="h-px flex-grow bg-gradient-to-r from-outline-variant/40 to-transparent"></div>
+      <span id="review-count-badge" class="text-xs text-on-surface-variant bg-surface-container-highest px-3 py-1 rounded-full font-headline"></span>
+    </div>
+
+    <!-- Loading state -->
+    <div id="loading-state" class="text-center py-16 text-on-surface-variant">
+      <span class="material-symbols-outlined text-4xl animate-spin block mb-3" style="animation:spin 1s linear infinite;">refresh</span>
+      <p class="text-sm">Loading reviews...</p>
+    </div>
+
+    <!-- Reviews list -->
+    <div id="reviews-container" class="hidden"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-20">
+      <span class="material-symbols-outlined text-5xl text-outline mb-4 block">rate_review</span>
+      <p class="text-on-surface-variant text-lg font-headline mb-1">No reviews yet</p>
+      <p class="text-sm text-on-surface-variant/60">Be the first to share your experience below!</p>
+    </div>
+  </section>
+
+  <!-- Write a Review -->
+  <section class="max-w-2xl mx-auto">
+    <div class="bg-surface-container-low rounded-2xl p-8 md:p-12 border border-outline-variant/10">
+      <h3 class="font-headline text-2xl font-bold mb-1">Share your experience</h3>
+      <p class="text-on-surface-variant text-sm mb-8">Bought this mouse? Tell others what you think — your review saves here permanently for everyone to see.</p>
+
+      <form id="review-form" class="space-y-6" onsubmit="submitReview(event)">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-on-surface-variant">Your name <span class="text-primary">*</span></label>
+            <input class="review-input" id="r-name" type="text" placeholder="e.g. Rafi Ahmed" autocomplete="name" required/>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-on-surface-variant">Your rating <span class="text-primary">*</span></label>
+            <div class="flex items-center gap-1 pt-1" id="star-picker">
+              <span class="star-btn material-symbols-outlined" data-val="1">star</span>
+              <span class="star-btn material-symbols-outlined" data-val="2">star</span>
+              <span class="star-btn material-symbols-outlined" data-val="3">star</span>
+              <span class="star-btn material-symbols-outlined" data-val="4">star</span>
+              <span class="star-btn material-symbols-outlined" data-val="5">star</span>
+            </div>
+            <input type="hidden" id="r-rating" value="0"/>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-on-surface-variant">Your review <span class="text-primary">*</span></label>
+          <textarea class="review-input" id="r-text" rows="5" placeholder="How's the feel, build quality, performance? Be as detailed as you like..." required></textarea>
+        </div>
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <p id="form-error" class="text-sm text-red-400 hidden">Please pick a star rating before submitting.</p>
+          <p class="text-xs text-on-surface-variant">Your review will be visible to everyone who visits this page.</p>
+          <button type="submit" id="submit-btn"
+            class="bg-secondary text-on-secondary font-headline font-bold tracking-wide uppercase px-8 py-3.5 rounded-lg flex items-center gap-2 hover:shadow-[0_0_20px_rgba(47,248,1,0.35)] transition-all duration-200 active:scale-95 text-sm">
+            Post Review
+            <span class="material-symbols-outlined" style="font-size:1rem;">send</span>
+          </button>
+        </div>
+      </form>
+
+      <div id="post-success" class="hidden mt-6 p-4 rounded-xl bg-secondary-container/20 border border-secondary/20 flex items-center gap-3">
+        <span class="material-symbols-outlined text-secondary">check_circle</span>
+        <p class="text-sm text-on-surface-variant">Your review has been posted! Scroll up to see it.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="w-full py-12 px-8 bg-[#131313] border-t border-white/5">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
+    <div class="text-lg font-bold text-white font-headline uppercase">TECHFLOW</div>
+    <div class="flex flex-wrap justify-center gap-8">
+      <a class="font-body text-xs tracking-widest uppercase text-[#adaaaa] hover:text-[#00E5FF] transition-colors" href="#">Privacy Policy</a>
+      <a class="font-body text-xs tracking-widest uppercase text-[#adaaaa] hover:text-[#00E5FF] transition-colors" href="#">Terms of Service</a>
+      <a class="font-body text-xs tracking-widest uppercase text-[#adaaaa] hover:text-[#00E5FF] transition-colors" href="#">Affiliate Disclosure</a>
+    </div>
+    <div class="font-body text-xs tracking-widest uppercase text-[#adaaaa]">© 2026 TECHFLOW. ALL RIGHTS RESERVED.</div>
+  </div>
+</footer>
+
+<style>
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+</style>
+
+<script>
+// ─── Seed reviews (shown to everyone, always) ──────────────────────────────
+var SEED_REVIEWS = [
+  { id:'seed-1', name:'Julian Draper', rating:5, text:"The weight-to-size ratio on the Orochi V2 is genuinely impressive. I travel constantly for work but still need to keep up with my aim training — this fits in my jacket pocket and performs like a full-size flagship. Click feel is crisp and satisfying, no mushiness at all.", date:'2025-11-03' },
+  { id:'seed-2', name:'M. Kovic', rating:4, text:"Battery life is the standout feature. I've been running a single AA lithium for over three months and haven't seen the low-power indicator yet. Software is a little bloated but once DPI is saved to onboard memory you can uninstall it and forget about it.", date:'2025-10-27' },
+  { id:'seed-3', name:'Sarah R.', rating:5, text:"Finally a mouse that fits smaller hands properly. The shape is ergonomic for claw grip without feeling like I'm trying to hold a bar of soap. I use it 6+ hours a day for design work and my wrist genuinely thanks me for it.", date:'2025-10-14' },
+  { id:'seed-4', name:'Techno_Nomad', rating:5, text:"The dual wireless modes are a game changer for my workflow. 2.4GHz for gaming sessions, Bluetooth when I switch to my MacBook for work — one slider on the bottom and done. No dongles to lose, no pairing headaches.", date:'2025-09-30' }
+];
+
+// ─── State ─────────────────────────────────────────────────────────────────
+var selectedRating = 0;
+var userReviews = [];   // loaded from storage
+
+// ─── Star picker ───────────────────────────────────────────────────────────
+document.querySelectorAll('.star-btn').forEach(function(btn) {
+  btn.addEventListener('mouseenter', function() { highlightStars(+this.dataset.val); });
+  btn.addEventListener('mouseleave', function() { highlightStars(selectedRating); });
+  btn.addEventListener('click', function() {
+    selectedRating = +this.dataset.val;
+    document.getElementById('r-rating').value = selectedRating;
+    highlightStars(selectedRating);
+    document.getElementById('form-error').classList.add('hidden');
+  });
+});
+document.getElementById('star-picker').addEventListener('mouseleave', function() {
+  highlightStars(selectedRating);
+});
+
+function highlightStars(count) {
+  document.querySelectorAll('.star-btn').forEach(function(btn) {
+    if (+btn.dataset.val <= count) {
+      btn.classList.add('active');
+      btn.classList.add('star-filled');
+      btn.style.fontVariationSettings = "'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24";
+    } else {
+      btn.classList.remove('active');
+      btn.classList.remove('star-filled');
+      btn.style.fontVariationSettings = "'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24";
+    }
+  });
+}
+
+// ─── Storage helpers (localStorage — works locally & when deployed) ──────────
+async function loadReviews() {
+  try {
+    var raw = localStorage.getItem('techflow:reviews');
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+async function saveReviews(reviews) {
+  try {
+    localStorage.setItem('techflow:reviews', JSON.stringify(reviews));
+  } catch(e) { console.error('Storage save failed:', e); }
+}
+
+// ─── Render ────────────────────────────────────────────────────────────────
+function starsHTML(count) {
+  var html = '';
+  for (var i = 1; i <= 5; i++) {
+    if (i <= count) {
+      html += '<span class="material-symbols-outlined text-secondary text-lg" style="font-variation-settings:\'FILL\' 1,\'wght\' 400,\'GRAD\' 0,\'opsz\' 24;">star</span>';
+    } else {
+      html += '<span class="material-symbols-outlined text-outline text-lg">star</span>';
+    }
+  }
+  return html;
+}
+
+function initials(name) {
+  var parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+  return name.slice(0, 2).toUpperCase();
+}
+
+function timeAgo(dateStr) {
+  var d = new Date(dateStr);
+  var now = new Date();
+  var diff = Math.floor((now - d) / 1000);
+  if (diff < 60) return 'Just now';
+  if (diff < 3600) return Math.floor(diff/60) + ' min ago';
+  if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+  var days = Math.floor(diff/86400);
+  if (days === 1) return 'Yesterday';
+  if (days < 7) return days + ' days ago';
+  if (days < 30) return Math.floor(days/7) + ' week' + (Math.floor(days/7) > 1 ? 's' : '') + ' ago';
+  if (days < 365) return Math.floor(days/30) + ' month' + (Math.floor(days/30) > 1 ? 's' : '') + ' ago';
+  return Math.floor(days/365) + ' year' + (Math.floor(days/365) > 1 ? 's' : '') + ' ago';
+}
+
+function buildCard(review, isNew) {
+  var div = document.createElement('div');
+  div.className = 'glass-card review-card' + (isNew ? ' review-card-new' : '');
+  div.innerHTML = [
+    '<div class="flex items-start gap-4">',
+      '<div class="avatar-circle">' + initials(review.name) + '</div>',
+      '<div class="flex-1 min-w-0">',
+        '<div class="flex flex-wrap items-center justify-between gap-2 mb-1">',
+          '<span class="font-headline font-bold text-white text-sm">' + escHtml(review.name) + '</span>',
+          '<span class="text-xs text-on-surface-variant">' + timeAgo(review.date) + '</span>',
+        '</div>',
+        '<div class="flex gap-0.5 mb-3">' + starsHTML(review.rating) + '</div>',
+        '<p class="text-on-surface-variant text-sm leading-relaxed">' + escHtml(review.text) + '</p>',
+      '</div>',
+    '</div>'
+  ].join('');
+  return div;
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function updateStats(allReviews) {
+  var total = allReviews.length;
+  var avg = total > 0 ? (allReviews.reduce(function(s,r){ return s + r.rating; }, 0) / total).toFixed(1) : '—';
+  document.getElementById('avg-rating').textContent = avg;
+  document.getElementById('total-reviews').textContent = total;
+  document.getElementById('review-count-badge').textContent = total + ' review' + (total !== 1 ? 's' : '');
+}
+
+function renderAll(allReviews, isNew) {
+  var container = document.getElementById('reviews-container');
+  var loading = document.getElementById('loading-state');
+  var empty = document.getElementById('empty-state');
+
+  loading.classList.add('hidden');
+
+  if (allReviews.length === 0) {
+    container.classList.add('hidden');
+    empty.classList.remove('hidden');
+    updateStats([]);
+    return;
+  }
+
+  empty.classList.add('hidden');
+  container.classList.remove('hidden');
+
+  // Re-render all if not new, otherwise prepend
+  if (!isNew) {
+    container.innerHTML = '';
+    allReviews.forEach(function(r) {
+      container.appendChild(buildCard(r, false));
+    });
+  } else {
+    var newCard = buildCard(allReviews[0], true);
+    container.insertBefore(newCard, container.firstChild);
+  }
+
+  updateStats(allReviews);
+}
+
+// ─── Init ──────────────────────────────────────────────────────────────────
+(async function init() {
+  var stored = await loadReviews();
+  userReviews = stored;
+  var allReviews = userReviews.concat(SEED_REVIEWS);
+  renderAll(allReviews, false);
+})();
+
+// ─── Submit ────────────────────────────────────────────────────────────────
+async function submitReview(e) {
+  e.preventDefault();
+
+  var name = document.getElementById('r-name').value.trim();
+  var text = document.getElementById('r-text').value.trim();
+  var rating = selectedRating;
+
+  if (!rating) {
+    document.getElementById('form-error').classList.remove('hidden');
+    return;
+  }
+
+  var btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  btn.textContent = 'Posting...';
+
+  var review = {
+    id: 'user-' + Date.now(),
+    name: name,
+    rating: rating,
+    text: text,
+    date: new Date().toISOString()
+  };
+
+  userReviews.unshift(review);
+  await saveReviews(userReviews);
+
+  var allReviews = userReviews.concat(SEED_REVIEWS);
+  renderAll(allReviews, true);
+
+  // Reset form
+  document.getElementById('review-form').reset();
+  selectedRating = 0;
+  highlightStars(0);
+  btn.disabled = false;
+  btn.style.opacity = '1';
+  btn.innerHTML = 'Post Review <span class="material-symbols-outlined" style="font-size:1rem;">send</span>';
+  document.getElementById('post-success').classList.remove('hidden');
+  setTimeout(function() {
+    document.getElementById('post-success').classList.add('hidden');
+  }, 4000);
+}
+
+// ─── Page transitions ──────────────────────────────────────────────────────
+(function() {
+  var style = document.body.style;
+  document.querySelectorAll('a[href]').forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel')) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        style.opacity = '0';
+        style.transform = 'translateY(-10px)';
+        setTimeout(function() { window.location.href = href; }, 370);
+      });
+    }
+  });
+})();
+</script>
 </body>
 </html>
